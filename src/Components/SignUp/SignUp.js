@@ -1,14 +1,32 @@
+import logo from '../../Assets/Image/google.svg'
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import app from '../../firebase.init';
+
+const auth = getAuth(app)
 
 const SignUp = () => {
 
     const navigation = useNavigate()
+    const provider = new GoogleAuthProvider();
 
 
 
 
 
+
+
+
+
+
+
+    signInWithPopup(auth, provider)
+        .then(res => {
+            const user = res.user
+            console.log(user);
+        })
+        .catch(err => console.log(err))
 
 
     return (
@@ -53,8 +71,8 @@ const SignUp = () => {
                 </div>
                 <div className='input-wrapper'>
                     <button className='google-auth'>
-                        <img alt='' />
-                        <p> Continue with Google </p>
+                        <img src={logo} alt='' />
+                        <p > Continue with Google </p>
                     </button>
                 </div>
             </div>
